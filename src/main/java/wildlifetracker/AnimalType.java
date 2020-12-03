@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class AnimalType implements Dbmanagement {
 
+
     public int id;
     public String name;
     public String type;

@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class Ranger{
 
+
     private int id;
     private String name;
     private String badge_number;

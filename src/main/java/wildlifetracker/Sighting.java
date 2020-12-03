@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class Sighting {
 
+
     private int id;
     private int location_id;
     private int ranger_id;

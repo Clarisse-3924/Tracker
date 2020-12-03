@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class Location{
 
+
     private int id;
     private  String name;
 
