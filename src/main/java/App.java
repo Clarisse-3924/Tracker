@@ -120,7 +120,7 @@ public class App {
         //animal
         get("/create/animal",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
-            return new ModelAndView(model,"animalform.hbs");
+            return new ModelAndView(model,"Animalform.hbs");
         },new HandlebarsTemplateEngine());
 
         post("/create/animal/new",(request, response) -> {
@@ -142,7 +142,7 @@ public class App {
                 animal.save();
             }
 
-            return new ModelAndView(model,"animalform.hbs");
+            return new ModelAndView(model,"Animalform.hbs");
         },new HandlebarsTemplateEngine());
 
 
@@ -160,13 +160,13 @@ public class App {
             model.put("age",age);
             String typeChosen="endangered";
             model.put("endangered",typeChosen);
-            return new ModelAndView(model,"animalform.hbs");
+            return new ModelAndView(model,"Animalform.hbs");
         },new HandlebarsTemplateEngine());
 
         get("/view/animals",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             model.put("animals",AnimalType.all());
-            return new ModelAndView(model,"animalview.hbs");
+            return new ModelAndView(model,"Animalview.hbs");
         },new HandlebarsTemplateEngine());
 
 

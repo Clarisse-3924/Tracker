@@ -1,3 +1,4 @@
+package wildlifetracker;
 
 import org.sql2o.Connection;
 import org.sql2o.Sql2oException;
@@ -47,7 +48,7 @@ public class AnimalType implements Dbmanagement {
 
     public void save(){
         if(this.name.equals("")||this.type.equals("")||this.name.equals(null)||this.type.equals(null)){
-            throw new IllegalArgumentException("Fields cannot be empty");
+            throw new IllegalArgumentException("required");
         }
         try (Connection con= DB.sql2o.open()){
 
@@ -67,11 +68,11 @@ public class AnimalType implements Dbmanagement {
     public void update(int id,String type,String health,String age) {
         try (Connection con = DB.sql2o.open()) {
             if (type.equals("")) {
-                throw new IllegalArgumentException("All fields must be filled");
+                throw new IllegalArgumentException("required");
             }
             if (type == "endangered") {
                 if (health.equals("") || age.equals("")) {
-                    throw new IllegalArgumentException("All fields must be filled");
+                    throw new IllegalArgumentException("required");
                 }
                 String sql = "UPDATE animals SET type=:type,health=:health,age=:age WHERE id=:id";
                 con.createQuery(sql)
