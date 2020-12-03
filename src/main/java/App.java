@@ -1,6 +1,7 @@
 import spark.ModelAndView;
         import spark.template.handlebars.HandlebarsTemplateEngine;
 import wildlifetracker.AnimalType;
+import wildlifetracker.Location;
 import wildlifetracker.Ranger;
 import wildlifetracker.Sighting;
 
@@ -63,10 +64,10 @@ public class App {
                 animals.add(animal_name);
                 types.add(animal_type);
             }
-            model.put("sightings",sightings);
-            model.put("animals",animals);
-            model.put("types",types);
-            model.put("rangers",Rangers.all());
+            model.put("sighting",sightings);
+            model.put("animal",animals);
+            model.put("type",types);
+            model.put("ranger",Ranger.all());
             return new ModelAndView(model,"ranger-view.hbs");
         },new HandlebarsTemplateEngine());
 
@@ -83,7 +84,7 @@ public class App {
         post("/create/location/new",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             String name=request.queryParams("name");
-            Locations location=new Locations(name);
+            Location location=new Location(name);
             try {
                 location.save();
             }catch (IllegalArgumentException e){
@@ -94,20 +95,20 @@ public class App {
         },new HandlebarsTemplateEngine());
         get("/view/locations",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
-            model.put("locations",Locations.all());
+            model.put("locations",Location.all());
             return new ModelAndView(model,"location-view.hbs");
         },new HandlebarsTemplateEngine());
 
         get("/view/location/sightings/:id",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             int idOfLocation= Integer.parseInt(request.params(":id"));
-            Locations foundLocation=Locations.find(idOfLocation);
-            List<Sightings> sightings=foundLocation.getLocationSightings();
+            Location foundLocation=Location.find(idOfLocation);
+            List<Sighting> sightings=foundLocation.getLocationSightings();
             ArrayList<String> animals=new ArrayList<String>();
             ArrayList<String> types=new ArrayList<String>();
-            for (Sightings sighting : sightings){
-                String animal_name=Animals.find(sighting.getAnimal_id()).getName();
-                String animal_type=Animals.find(sighting.getAnimal_id()).getType();
+            for (Sighting sighting : sightings){
+                String animal_name=AnimalType.find(sighting.getAnimal_id()).getName();
+                String animal_type=AnimalType.find(sighting.getAnimal_id()).getType();
                 animals.add(animal_name);
                 types.add(animal_type);
             }
