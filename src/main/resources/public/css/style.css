@@ -1,0 +1,18 @@
+.navbar{
+
+   padding-top: 0rem;
+    padding-left: 50%;
+    background-color: #0074B7;
+}
+  .navbar .nav-link{
+    color:white;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 16px;
+
+  }
+
+   a:hover{
+      background-color:  rgb(77, 107, 107);
+  }
+
